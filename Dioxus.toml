@@ -9,7 +9,7 @@ title = "dash-views"
 [web.resource]
 
 # Additional CSS style files
-style = []
+style = ["main.css"]
 
 # Additional JavaScript files
 script = []
@@ -19,3 +19,6 @@ script = []
 # Javascript code file
 # serve: [dev-server] only
 script = []
+
+[web.assets]
+asset_dir = "assets"

@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .card-dorm {
+        @apply bg-white p-6 rounded-xl shadow-md border border-gray-100 transition-transform;
+    }
+
+    .card-dorm:hover {
+        @apply -translate-y-1 shadow-md;
+    }
+
+    .stat-card-custom {
+        @apply bg-white p-6 rounded-xl border border-gray-100 shadow-sm transition-all duration-300 max-h-72 max-w-72 min-h-64 min-h-64;
+    }
+
+    .stat-card-custom:hover {
+        @apply shadow-md -translate-y-1;
+    }
+}
