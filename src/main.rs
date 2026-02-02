@@ -8,9 +8,9 @@ use dioxus::prelude::*;
 mod components;
 
 // use modules
-
 use crate::components::sidebar::*;
 use crate::components::stat_card::*;
+use crate::components::TopBar;
 
 const MAIN_CSS: Asset = asset!("/assets/main.css");
 const TAILWIND_CSS: Asset = asset!("/assets/tailwind.css");
@@ -31,27 +31,41 @@ fn App() -> Element {
 #[component]
 pub fn Hero() -> Element {
     rsx! {
-        div
-        { class: "w-screen h-screen flex flex-col",
-            div
-            { class: "h-[5rem] bg-red-600",
+        // แนะนำให้ใช้โครงสร้าง Flexbox หรือ Grid เพื่อจัดตำแหน่งร่วมกับ Sidebar
+        div { class: "flex h-screen",
+            // 1. เรียกใช้ Sidebar
+            SideBar {
+                collapsed: use_signal(|| false),
+                active: use_signal(|| NavKey::DashBoard)
+            }
 
-            } // div narbar
+            // 2. ส่วนเนื้อหาขวาที่มี TopBar
+            main { class: "flex-1 flex flex-col min-w-0",
 
-            div
-            { class: "flex flex-1",
-                div
-                { class: "w-[12rem] bg-blue-900",
+                // --- เรียกใช้ TopBar ตรงนี้ ---
+                TopBar { title: "Dashboard" }
 
-                } // div sidebar
+                // ส่วนเนื้อหาด้านล่าง TopBar
+                div { class: "p-4 overflow-y-auto",
+                    "เนื้อหาหน้า Dashboard ของคุณ..."
 
-                div
-                {  class: "flex-1 bg-black",
+                            StatCard {
+                                label: "Total Income",
+                                value: "฿45,000",
+                                hint: "+12% from last month",
+                                icon: "💰"
+                            }
 
-                } // div dash content
-
-            } // div body content
-        } // whole div
-
-    } //close rsx! Hero
+                            // แบบระบุ Variant เป็น Sky
+                            StatCard {
+                                label: "Occupied Rooms",
+                                value: "18/20",
+                                hint: "2 rooms vacant",
+                                icon: "🏠",
+                                variant: StatCardVariant::Sky
+                            }
+                }
+            }
+        }
+    }
 } // close Hero function
