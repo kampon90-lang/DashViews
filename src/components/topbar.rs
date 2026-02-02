@@ -1,30 +1,46 @@
 use dioxus::prelude::*;
 
+#[derive(Props, Clone, PartialEq)]
+pub struct TopBarProps {
+    pub title: &'static str,
+}
+
 #[component]
-pub fn TopBar(title: &'static str) -> Element {
+pub fn TopBar(props: TopBarProps) -> Element {
     rsx! {
-        header { class: "stick top-0 z-19" },
-            div { class: "panel bg-lineart mx-2 mt-2 p-3",
-                div { class: "flex items-center justify-between gap-3",
-                    div { class: "min-w-0",
-                        "Rental preview | income | Vacant | Unpaid"
-                    } // end 3rd inner div 3 min-w-0
-                } // end 2nd inner div 2
+        header { class: "sticky top-0 z-20 backdrop-blur border-b border-slate-800/80",
+            div { class: "mx-2 mt-2",
+                div { class: "surface p-4 flex items-center justify-between gap-3",
 
-                div { class: "flex items-center gap-2",
-                    div { class: "hidden sm:block w-72",
-                        input {
-                            class: "input",
-                            r#type: "text",
-                            placeholder: "Search Tenant / Room / Bill..."
+                    // Left: title and breadcrumbs
+                    div{ class: "min-w-0",
+                        div { class: "text-sm font-semibold text-slate-100 truncate",
+                            "{props.title}"
                         }
-                    } // end 3 rd inner div 3 with input
 
-                    button { class: "btn btn-primary", "New Bill" }
-                    button { class: "btn", "Export" }
+                        div { class: "mt-1 text-xs text-slate-400 truncate",
+                            "Rental preview | Income | Vacant | Unpaid"
+                        }
+                    }
 
-                } // end 2nd inner div 2
+                    // Right search + action
+                    div { class: "flex items-center gap-2 flex-wrap justify-end",
+                        div { class: "top-bar-res",
+                            input {
+                                class: "input",
+                                r#type: "text",
+                                placeholder: "Seach Tenant/Room/Bill"
+                            }
+                        }
+                        button { class: "btn btn-primary", "New Bill" }
+                        button { class: "btn", "Export" }
 
-            } // end div 1
+
+                    }
+
+
+                }
+            }
+        }
     } // end rsx!
 }

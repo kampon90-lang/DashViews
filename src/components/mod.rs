@@ -3,5 +3,5 @@ pub mod stat_card;
 pub mod topbar;
 
 pub use sidebar::SideBar;
-pub use stat_card::{StatCard, StatCardVariant};
+pub use stat_card::*;
 pub use topbar::TopBar;

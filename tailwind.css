@@ -1,109 +1,132 @@
-@import "tailwindcss";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ---------- Base theme ---------- */
 @layer base {
     html,
     body {
-        @apply h-full bg-slate-500 text-slate-100;
+        @apply bg-slate-950 text-slate-100;
     }
 }
 
+/* ---------- Reusable components ---------- */
 @layer components {
-    /* Layout */
+    /* Page layout */
     .app-shell {
-        @apply min-h-screen w-full bg-slate-950;
+        @apply min-h-screen w-full bg-slate-950 text-slate-100 overflow-x-hidden;
+    }
+
+    .app-row {
+        @apply flex flex-col md:flex-row;
+    }
+
+    .main-col {
+        @apply flex-1 min-w-0;
     }
 
     .container-page {
-        @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+        @apply w-full px-6 py-6;
+    }
+    .surface {
+        @apply rounded-2xl border border-slate-800 bg-slate-950/40;
     }
 
-    /* Reuseable surfaces */
-    .panel {
-        @apply rounded-2xl border border-slate-800 bg-slate-900/50 shadow-sm backdrop-blur;
-    }
-
-    .panel-solid {
-        @apply rounded-2xl border border-slate-800 bg-slate-900 shadow-sm;
-    }
-
+    /* Card */
     .card {
-        @apply panel p-4 sm:p-5;
+        @apply rounded-2xl border border-slate-800 bg-slate-950/40 shadow-[0_0_0_1px_rgba(15,23,42,.6)] backdrop-blur;
     }
-
+    .card-pad {
+        @apply p-4;
+    }
     .card-title {
-        @apply text-sm font-semibold text-slate-200;
+        @apply text-sm font-semibold text-slate-100;
+    }
+    .muted {
+        @apply text-xs text-slate-400;
     }
 
-    .card-sub {
-        @apply mt-1 text-sx text-slate-400;
+    /* Buttons */
+    .btn {
+        @apply inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-2 text-sm font-medium text-slate-100 hover:bg-slate-900/50;
     }
-
-    /* Button */
     .btn-primary {
-        @apply border-sky-500/30 bg-sky-500/10 hover:bg-sky-500/15 text-sky-100;
+        @apply border-sky-500/30 bg-sky-500/10 hover:bg-sky-500/15;
     }
 
-    .btn-ghost {
-        @apply border-transparent bg-transparent hover:bg-slate-800/40;
-    }
-
-    /* Input */
-    .input {
-        @apply w-full rounded-xl border border-slate-800 bg-slate-950/40 px-3 py-2 text-sm
-        text-slate-100 placeholder:text-slate-500 outline-none focus:border-sky-500/40
-        focus:ring-2 focus:ring-sky-500/15;
-    }
-
-    /* Sidebar */
-    .nav-item {
-        @apply flex items-center gap-3 rounded-xl px-3 py-2 text-sm text-slate-300
-        hover:bg-slate-600/40 transition;
-    }
-
-    /* Decorative */
-    .bg-lineart {
-        background-image:
-            radial-gradient(
-                700px 300px at 20% 0%,
-                rgba(56, 189, 248, 0.22),
-                transparent 60%
-            ),
-            radial-gradient(
-                700px 300px at 80% 10%,
-                rgba(14, 165, 233, 0.16),
-                transparennt 60%
-            ),
-            linear-gradient(
-                to bottom right,
-                rgba(148, 163, 184, 0.08),
-                transparent 55%
-            ),
-            repeating-linear-gradient(
-                90deg,
-                rgba(148, 163, 184, 0.07) 0px,
-                rgba(148, 163, 184, 0.07) 1px,
-                transparent 1px,
-                transparent 48px
-            ),
-            repeating-linear-gradient(
-                0deg,
-                rgba(148, 163, 184, 0.05) 0px,
-                rgba (148, 163, 184, 0.05) 1px,
-                transparent 1px,
-                transparent 48px
-            );
-        background-blend-mode: screen, screen, normal, normal;
-    }
-
-    .liner-divider {
-        @apply h-px w-full bg-gradient-to-r from-transparent via-slate-700/70 to-transparent;
-    }
-
+    /* Pills / badges */
     .badge {
-        @apply inline-flex items-center rounded-full border border-slate-700 bg-slate-900/50 px-2 py-1 text-xs text-slate-300;
+        @apply inline-flex items-center rounded-full border px-3 py-1 text-xs;
     }
-} /* @layer component end */
+    .badge-ok {
+        @apply border-emerald-500/25 bg-emerald-500/10 text-emerald-100;
+    }
+    .badge-idle {
+        @apply border-slate-700 bg-slate-900/50 text-slate-200;
+    }
+    .badge-warn {
+        @apply border-amber-500/25 bg-amber-500/10 text-amber-100;
+    }
+
+    /* Inputs */
+    .input {
+        @apply w-full rounded-2xl border border-slate-800 bg-slate-950/40 px-4 py-3 text-sm text-slate-100 placeholder:text-slate-500 outline-none focus:border-sky-500/40;
+    }
+
+    /* Divider */
+    .line-divider {
+        @apply h-px w-full bg-slate-800/80;
+    }
+
+    /* Table */
+    .table {
+        @apply w-full text-sm;
+    }
+    .th {
+        @apply py-2 text-left font-medium text-slate-400;
+    }
+    .td {
+        @apply py-3 pr-4 text-slate-200;
+    }
+
+    /* SideBar */
+    .sidebar {
+        @apply w-full md:w-72 flex flex-col  w-64 shrink-0 min-h-screen px-4 py-4 border-r border-slate-800 bg-slate-950/70;
+    }
+
+    .sidebar-collapsed {
+        @apply w-20 md:w-16;
+    }
+
+    .sidebar-brand {
+        @apply flex items-center gap-3;
+    }
+
+    .brand-mark {
+        @apply h-11 w-11 rounded-2xl border border-sky-500/25 bg-sky-500/10 flex items-center justify-center text-lg;
+    }
+
+    .sidebar-nav {
+        @apply flex flex-col gap-2;
+    }
+
+    .nav-item {
+        @apply w-full flex items-center gap-3 rounded-2xl px-3 py-3 text-sm text-slate-200 border border-transparent hover:bg-slate-900/50;
+    }
+
+    .nav-item-active {
+        @apply bg-sky-500/10 border border-sky-500/25 text-slate-100;
+    }
+
+    .nav-icon {
+        @apply h-9 w-9 rounded-2xl border border-slate-800 bg-slate-950/40 flex items-center justify-center;
+    }
+
+    .sidebar-footer {
+        @apply mt-auto pt-4 text-slate-400;
+    }
+
+    .top-bar-res {
+        @apply hidden md:block flex-1 min-w-0 max-w-md;
+    }
+}
