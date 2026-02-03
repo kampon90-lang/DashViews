@@ -8,9 +8,9 @@ pub struct TopBarProps {
 #[component]
 pub fn TopBar(props: TopBarProps) -> Element {
     rsx! {
-        header { class: "sticky top-0 z-20 backdrop-blur border-b border-slate-800/80",
-            div { class: "mx-2 mt-2",
-                div { class: "surface p-4 flex items-center justify-between gap-3",
+        header { class: "sticky top-0 z-20 backdrop-blur shadow-[0_1px_0_rgba(255,255,255,0.05)] border-slate-800/80",
+            div { class: "px-3 sm:px-4 pt-3",
+                div { class: "surface p-3 sm:p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3",
 
                     // Left: title and breadcrumbs
                     div{ class: "min-w-0",
@@ -25,7 +25,8 @@ pub fn TopBar(props: TopBarProps) -> Element {
 
                     // Right search + action
                     div { class: "flex items-center gap-2 flex-wrap justify-end",
-                        div { class: "top-bar-res",
+                        // Search bar
+                        div { class: "hidden md:block flex-1 min-w-0 w-72 lg:w-96",
                             input {
                                 class: "input",
                                 r#type: "text",

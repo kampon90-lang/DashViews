@@ -26,8 +26,9 @@
     }
 
     .container-page {
-        @apply w-full px-6 py-6;
+        @apply w-full min-w-0 px-3 py-4 sm:px-4 md:px-6 lg:px-8;
     }
+
     .surface {
         @apply rounded-2xl border border-slate-800 bg-slate-950/40;
     }
@@ -120,6 +121,29 @@
 
     .nav-icon {
         @apply h-9 w-9 rounded-2xl border border-slate-800 bg-slate-950/40 flex items-center justify-center;
+    }
+
+    .bottom-nav {
+        @apply fixed left-0 right-0 bottom-0 z-50
+               border-t border-slate-800/70 bg-slate-950/80 backdrop-blur;
+        @apply grid grid-cols-5 gap-1 px-2 pt-2 pb-3;
+        padding-bottom: calc(env(safe-area-inset-bottom) + 0.75rem);
+    }
+
+    .bottom-nav-item {
+        @apply @apply flex flex-col items-center justify-center gap-1 rounded-xl py-2 text-slate-300;
+    }
+
+    .bottom-nav-item-active {
+        @apply bg-sky-500/10 text-slate-100 border border-sky-500/30;
+    }
+
+    .bottom-nav-icon {
+        @apply text-lg leading-none;
+    }
+
+    .bottom-nav-label {
+        @apply text-[11px] leading-none;
     }
 
     .sidebar-footer {

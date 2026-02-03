@@ -3,6 +3,7 @@ use dioxus::prelude::*;
 // import module components
 
 // use modules
+use crate::components::bottomnav::BottomNav;
 use crate::components::sidebar::NavKey;
 use crate::components::{SideBar, TopBar};
 use crate::pages::dashboard::DashBoardPage;
@@ -22,11 +23,11 @@ pub fn Hero() -> Element {
                 SideBar { collapsed, active }
 
                 // Main area
-                div { class: "min-col",
+                div { class: "main-col",
                     TopBar {title: title_of(*active.read())}
 
                     // page contents
-                    div { class: "container-page",
+                    div { class: "container-page pb-20 md:pb-0",
                         match *active.read() {
                             NavKey::DashBoard => rsx!{ crate::pages::dashboard::DashBoardPage {}},
                             NavKey::Rooms => rsx! { crate::pages::rooms::RoomsPage{}},
@@ -37,7 +38,10 @@ pub fn Hero() -> Element {
 
                     }
                 }
+
             }
+            // for mobile view
+            BottomNav { active }
         }
     }
 } // close Hero function

@@ -33,7 +33,7 @@ pub fn SideBar(collapsed: Signal<bool>, active: Signal<NavKey>) -> Element {
     };
 
     rsx! {
-        aside { class: if is_collapsed {"sidebar sidebar-collapsed"} else {"sidebar"},
+        aside { class: if is_collapsed {"sidebar sidebar-collapsed hidden md:flex"} else {"sidebar hidden md:flex"},
             // Brand
             div { class: "sidebar-brand",
                 div { class: "brand-mark", "🏠"}
